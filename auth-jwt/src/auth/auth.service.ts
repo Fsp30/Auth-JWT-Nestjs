@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException, ConflictException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt'
-import { RegisterDto } from './dto/register.dto';
+import { ResgisterDto } from './dto/resgister.dto';
 import { LoginDto } from './dto/login.dto';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
@@ -12,7 +12,7 @@ export class AuthService {
     private readonly jwtService: JwtService
   ){}
 
-  async register(dto:RegisterDto){
+  async register(dto:ResgisterDto){
     const userExists = await this.usersService.findOneByEmail(dto.email)
     if (userExists) throw new ConflictException("Email já cadastrado")
 
